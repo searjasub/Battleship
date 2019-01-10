@@ -27,9 +27,9 @@ public class UserInteraction {
 
     public Coordinate setStartingPoint() {
         try {
-           int row = ConsoleUI.promptForInt("Choose a row", 1, 10);
-           char col = ConsoleUI.promptForChar("Choose a column (letter must be capitilzed)", 'A', 'J');
-            return new Coordinate(row,col);
+            int row = ConsoleUI.promptForInt("Choose a row", 1, 10);
+            char col = ConsoleUI.promptForChar("Choose a column (letter must be capitilzed)", 'A', 'J');
+            return new Coordinate(row, col);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

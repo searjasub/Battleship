@@ -26,35 +26,26 @@ public class Coordinate {
         this.col = col;
     }
 
-    public int getNumber(){
-        if(getCol() == 'A'){
+    public int getNumber() {
+        if (getCol() == 'A') {
             return 1;
-        }
-        else if(getCol() == 'B'){
+        } else if (getCol() == 'B') {
             return 1;
-        }
-        else if(getCol() == 'C'){
+        } else if (getCol() == 'C') {
             return 1;
-        }
-        else if(getCol() == 'D'){
+        } else if (getCol() == 'D') {
             return 1;
-        }
-        else if(getCol() == 'E'){
+        } else if (getCol() == 'E') {
             return 1;
-        }
-        else if(getCol() == 'F'){
+        } else if (getCol() == 'F') {
             return 1;
-        }
-        else if(getCol() == 'G'){
+        } else if (getCol() == 'G') {
             return 1;
-        }
-        else if(getCol() == 'H'){
+        } else if (getCol() == 'H') {
             return 1;
-        }
-        else if(getCol() == 'I'){
+        } else if (getCol() == 'I') {
             return 1;
-        }
-        else {
+        } else {
             return 10;
         }
     }
