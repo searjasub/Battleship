@@ -4,10 +4,16 @@ public class Coordinate {
 
     private int row;
     private char col;
+    private int column;
 
     public Coordinate(int row, char col) {
-        this.row = row;
-        this.col = col;
+        this.setRow(row);
+        this.setCol(col);
+    }
+
+    public Coordinate(int row, int column) {
+        this.setRow(row);
+        this.setColumn(column);
     }
 
     public int getRow() {
@@ -22,31 +28,39 @@ public class Coordinate {
         return col;
     }
 
-    public void setCol(char col) {
-        this.col = col;
+    public void setCol(int col) {
+        this.column = col;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
     }
 
     public int getNumber() {
         if (getCol() == 'A') {
-            return 1;
+            return 0;
         } else if (getCol() == 'B') {
             return 1;
         } else if (getCol() == 'C') {
-            return 1;
+            return 2;
         } else if (getCol() == 'D') {
-            return 1;
+            return 3;
         } else if (getCol() == 'E') {
-            return 1;
+            return 4;
         } else if (getCol() == 'F') {
-            return 1;
+            return 5;
         } else if (getCol() == 'G') {
-            return 1;
+            return 6;
         } else if (getCol() == 'H') {
-            return 1;
+            return 7;
         } else if (getCol() == 'I') {
-            return 1;
+            return 8;
         } else {
-            return 10;
+            return 9;
         }
     }
 }

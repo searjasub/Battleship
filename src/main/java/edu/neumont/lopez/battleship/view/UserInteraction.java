@@ -29,7 +29,11 @@ public class UserInteraction {
         try {
             int row = ConsoleUI.promptForInt("Choose a row", 1, 10);
             char col = ConsoleUI.promptForChar("Choose a column (letter must be capitilzed)", 'A', 'J');
-            return new Coordinate(row, col);
+
+            Coordinate coordinate = new Coordinate(row, col);
+            int column = coordinate.getNumber();
+
+            return new Coordinate(row, column);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

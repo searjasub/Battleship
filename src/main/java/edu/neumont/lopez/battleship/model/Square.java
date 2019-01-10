@@ -1,15 +1,19 @@
 package edu.neumont.lopez.battleship.model;
 
+import edu.neumont.lopez.battleship.enumeration.State;
+
 public class Square {
 
-    private char printValue;
+    private State state = State.EMPTY;
+
+    public Square() {
+    }
 
     public char getPrintValue() {
-        return printValue;
+        return state.getStatus();
     }
 
-    public void setPrintValue(char printValue) {
-        this.printValue = printValue;
+    public void setState(State state) {
+        this.state = state;
     }
-
 }

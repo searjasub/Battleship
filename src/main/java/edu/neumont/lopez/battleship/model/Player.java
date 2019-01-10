@@ -3,6 +3,7 @@ package edu.neumont.lopez.battleship.model;
 public class Player {
 
     private String name;
+    private Board board;
 
     public String getName() {
         return name;
@@ -12,5 +13,11 @@ public class Player {
         this.name = name;
     }
 
+    public Board getBoard() {
+        return board;
+    }
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 }

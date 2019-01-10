@@ -9,14 +9,10 @@ public enum State {
     private char status;
 
     State(char status) {
-        this.setStatus(status);
+        this.status = status;
     }
 
     public char getStatus() {
         return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
     }
 }

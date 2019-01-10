@@ -21,21 +21,6 @@ public class Game {
             takeTurn();
             switchTurn();
         }
-
-
-//        board = new Board();
-//        for (int i = 0; i < players.length; i++) {
-//            String playerName = userInteraction.getPlayerName(i);
-//            Player player = new Player(playerName, board);
-//            players[i] = player;
-//        }
-//        this.turn = players[0];
-
-//        board1.printBoard();
-//
-//        System.out.println(turn.getName());
-//        System.out.println(turn.getBoard().toString());
-
     }
 
     private void switchTurn() {
@@ -54,8 +39,8 @@ public class Game {
 
     private void iniPlayer(Player player, String id) {
         player.setName(userInteraction.getPlayerName(id));
-        Board board = new Board();
-        board.init();
-        board.placeShips();
+        player.setBoard(new Board());
+        player.getBoard().init();
+        player.getBoard().placeShips();
     }
 }
