@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class UserInteraction {
 
-    public String getPlayerName(int id) {
+    public String getPlayerName(int number) {
         try {
-            return ConsoleUI.promptForInput("Player " + id + ", what is your name?", false);
+            return ConsoleUI.promptForInput("Player " + (number + 1) + ", what is your name?", false);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

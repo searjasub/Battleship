@@ -59,10 +59,9 @@ public class Board {
         else {
             return true;
         }
-
     }
 
-    public void printBoard(Player player) {
+    public void printBoard() {
         System.out.println("\t");
         for (int i = 0; i < BOARD_SIZE; i++) {
             System.out.print("\t" + BOARD_LETTERS[i]);
@@ -75,5 +74,11 @@ public class Board {
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public String toString(){
+        printBoard();
+        return "\n";
     }
 }

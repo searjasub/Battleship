@@ -26,9 +26,12 @@ public class Game {
             Player player = new Player(playerName, board);
             players[i] = player;
         }
-        this.turn = players[1];
+        this.turn = players[0];
 
-        board.printBoard(turn);
+        board.printBoard();
+
+        System.out.println(turn.getName());
+        System.out.println(turn.getBoard().toString());
 
     }
 
