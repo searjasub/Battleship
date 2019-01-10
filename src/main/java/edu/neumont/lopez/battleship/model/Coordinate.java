@@ -25,4 +25,37 @@ public class Coordinate {
     public void setCol(char col) {
         this.col = col;
     }
+
+    public int getNumber(){
+        if(getCol() == 'A'){
+            return 1;
+        }
+        else if(getCol() == 'B'){
+            return 1;
+        }
+        else if(getCol() == 'C'){
+            return 1;
+        }
+        else if(getCol() == 'D'){
+            return 1;
+        }
+        else if(getCol() == 'E'){
+            return 1;
+        }
+        else if(getCol() == 'F'){
+            return 1;
+        }
+        else if(getCol() == 'G'){
+            return 1;
+        }
+        else if(getCol() == 'H'){
+            return 1;
+        }
+        else if(getCol() == 'I'){
+            return 1;
+        }
+        else {
+            return 10;
+        }
+    }
 }

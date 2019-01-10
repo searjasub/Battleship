@@ -14,15 +14,15 @@ public class Ship {
         this.lives = size;
     }
 
-    public State getState(){
-        if(lives == 0){
-            return State.DESTROYED;
-        } else if(lives < size){
-            return State.HITTED;
-        } else {
-            return State.NO_HIT;
-        }
-    }
+//    public State getState(){
+//        if(lives == 0){
+//            return State.DESTROYED;
+//        } else if(lives < size){
+//            return State.HITTED;
+//        } else {
+//            return State.MISSED;
+//        }
+//    }
 
     public String getName(){
         return name;
