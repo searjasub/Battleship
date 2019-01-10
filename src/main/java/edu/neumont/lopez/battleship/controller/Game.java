@@ -1,31 +1,23 @@
 package edu.neumont.lopez.battleship.controller;
 
-import edu.neumont.lopez.battleship.enumeration.State;
 import edu.neumont.lopez.battleship.model.Board;
 import edu.neumont.lopez.battleship.model.Player;
 import edu.neumont.lopez.battleship.view.UserInteraction;
 
 public class Game {
 
+    private final int BOARD_SIZE = 10;
     private UserInteraction userInteraction = new UserInteraction();
     private Player player1 = new Player();
     private Player player2 = new Player();
     private Player turn = player1;
     private boolean gameOver = false;
-    private final int BOARD_SIZE = 10;
 
     public void run() {
 
         System.out.println("Welcome to Battleship!");
-
-        //board1.initBoard(BOARD_SIZE);
-
-
-
-
-
         init();
-        while (!gameOver){
+        while (!gameOver) {
             takeTurn();
             switchTurn();
         }
@@ -54,7 +46,6 @@ public class Game {
 
     }
 
-
     private void init() {
         iniPlayer(player1, "1");
         iniPlayer(player2, "2");
@@ -66,9 +57,5 @@ public class Game {
         Board board = new Board();
         board.init();
         board.placeShips();
-    }
-
-    public State squareStatus(int row){
-        return null;
     }
 }
