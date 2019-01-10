@@ -44,8 +44,6 @@ public class Board {
                 whereInBoard = userInteraction.setStartingPoint();
                 isValid = checkForAvailability(whereInBoard);
             }
-
-
         }
     }
 
