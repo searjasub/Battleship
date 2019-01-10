@@ -58,9 +58,6 @@ public class Board {
             System.out.println("Sorry that is not a valid row");
             return false;
         }
-//        else if() {
-//
-//        }
         else {
             return true;
         }
