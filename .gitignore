@@ -2,3 +2,4 @@
 .idea\*
 Battleship.iml
 .idea\workspace.xml
+*.xml
