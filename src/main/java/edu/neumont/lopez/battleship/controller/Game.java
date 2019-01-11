@@ -27,6 +27,12 @@ public class Game {
     }
 
     private void takeTurn() {
+        player1.getBoard().printBoard();
+        player2.getBoard().printBoard();
+        System.out.println(player1.getName());
+        System.out.println(player2.getName());
+        player1.getBoard().printSampleBoard();
+        gameOver = true;
 
     }
 

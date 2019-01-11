@@ -9,7 +9,9 @@ public class UserInteraction {
 
     public String getPlayerName(String id) {
         try {
-            return ConsoleUI.promptForInput("Player " + id + ", what is your name?", false);
+            return ConsoleUI.promptForInput("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+                    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+                    "Player " + id + ", what is your name?", false);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -22,7 +24,6 @@ public class UserInteraction {
             throw new RuntimeException(ex);
         }
     }
-
 
     public Coordinate setStartingPoint() {
         try {

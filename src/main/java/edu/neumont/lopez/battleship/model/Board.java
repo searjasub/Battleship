@@ -35,7 +35,6 @@ public class Board {
 
     public void placeShips() {
         Coordinate whereInBoard = null;
-
         System.out.println("Let's place your ships on the board.");
         printBoard();
         for (Ship ship : ships) {
@@ -55,9 +54,61 @@ public class Board {
                     overlapping = checkForOverlapping(whereInBoard);
                 }
             }
-            board[whereInBoard.getRow() - 1][whereInBoard.getColumn()].setState(State.UNHIT);
+            updateBoardDirection(horizontal, ship, whereInBoard);
             printBoard();
         }
+    }
+
+    private void updateBoardDirection(boolean horizontal, Ship ship, Coordinate whereInBoard) {
+        int userEx = -1;
+        if (horizontal) {
+            if (ship.getSize() == Ships.CARRIER.getSize()) {
+                for (int i = 0; i < Ships.CARRIER.getSize(); i++) {
+                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                }
+            } else if (ship.getSize() == Ships.BATTLESHIP.getSize()) {
+                for (int i = 0; i < Ships.BATTLESHIP.getSize(); i++) {
+                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                }
+            } else if (ship.getSize() == Ships.CRUISER.getSize()) {
+                for (int i = 0; i < Ships.CRUISER.getSize(); i++) {
+                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                }
+            } else if (ship.getSize() == Ships.SUBMARINE.getSize()) {
+                for (int i = 0; i < Ships.SUBMARINE.getSize(); i++) {
+                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                }
+            } else if (ship.getSize() == Ships.DESTROYER.getSize()) {
+                for (int i = 0; i < Ships.DESTROYER.getSize(); i++) {
+                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                }
+            }
+        } else {
+            if (ship.getSize() == Ships.CARRIER.getSize()) {
+                for (int i = userEx; i < Ships.CARRIER.getSize(); i++) {
+                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                }
+            } else if (ship.getSize() == Ships.BATTLESHIP.getSize()) {
+                for (int i = userEx; i < Ships.BATTLESHIP.getSize(); i++) {
+                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                }
+            } else if (ship.getSize() == Ships.CRUISER.getSize()) {
+                for (int i = userEx; i < Ships.CRUISER.getSize(); i++) {
+                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                }
+            } else if (ship.getSize() == Ships.SUBMARINE.getSize()) {
+                for (int i = userEx; i < Ships.SUBMARINE.getSize(); i++) {
+                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                }
+            } else if (ship.getSize() == Ships.DESTROYER.getSize()) {
+                for (int i = userEx; i < Ships.DESTROYER.getSize(); i++) {
+                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                }
+            }
+
+        }
+
+
     }
 
     public boolean checkForOverlapping(Coordinate coordinate) {
@@ -106,6 +157,21 @@ public class Board {
             System.out.print((i + 1) + "\t");
             for (int j = 0; j < BOARD_SIZE; j++) {
                 System.out.print(board[i][j].getPrintValue() + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public void printSampleBoard(){
+        System.out.println("\t");
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            System.out.print("\t" + BOARD_LETTERS[i]);
+        }
+        System.out.println();
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            System.out.print((i + 1) + "\t");
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                System.out.print('~' + "\t");
             }
             System.out.println();
         }
