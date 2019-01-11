@@ -25,7 +25,7 @@ public class UserInteraction {
         }
     }
 
-    public Coordinate setStartingPoint() {
+    public Coordinate getCoordinate() {
         try {
             int row = ConsoleUI.promptForInt("Choose a row", 1, 10);
             char col = ConsoleUI.promptForChar("Choose a column (letter must be capitilzed)", 'A', 'J');
