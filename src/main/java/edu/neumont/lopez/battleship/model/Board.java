@@ -50,7 +50,7 @@ public class Board {
                 boolean overlapping = true;
                 while (overlapping) {
                     whereInBoard = userInteraction.setStartingPoint();
-                    isValid = checkInsideBoard(whereInBoard, horizontal, ship);
+                    isValid = checkInsideBoard(horizontal, ship, whereInBoard);
                     overlapping = checkForOverlapping(whereInBoard);
                 }
             }
@@ -59,50 +59,50 @@ public class Board {
         }
     }
 
-    private void updateBoardDirection(boolean horizontal, Ship ship, Coordinate whereInBoard) {
+    private void updateBoardDirection(boolean b, Ship s, Coordinate c) {
         int userEx = -1;
-        if (horizontal) {
-            if (ship.getSize() == Ships.CARRIER.getSize()) {
+        if (b) {
+            if (s.getSize() == Ships.CARRIER.getSize()) {
                 for (int i = 0; i < Ships.CARRIER.getSize(); i++) {
-                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                    board[c.getRow() + userEx][c.getColumn() + i].setState(State.UNHIT);
                 }
-            } else if (ship.getSize() == Ships.BATTLESHIP.getSize()) {
+            } else if (s.getSize() == Ships.BATTLESHIP.getSize()) {
                 for (int i = 0; i < Ships.BATTLESHIP.getSize(); i++) {
-                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                    board[c.getRow() + userEx][c.getColumn() + i].setState(State.UNHIT);
                 }
-            } else if (ship.getSize() == Ships.CRUISER.getSize()) {
+            } else if (s.getSize() == Ships.CRUISER.getSize()) {
                 for (int i = 0; i < Ships.CRUISER.getSize(); i++) {
-                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                    board[c.getRow() + userEx][c.getColumn() + i].setState(State.UNHIT);
                 }
-            } else if (ship.getSize() == Ships.SUBMARINE.getSize()) {
+            } else if (s.getSize() == Ships.SUBMARINE.getSize()) {
                 for (int i = 0; i < Ships.SUBMARINE.getSize(); i++) {
-                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                    board[c.getRow() + userEx][c.getColumn() + i].setState(State.UNHIT);
                 }
-            } else if (ship.getSize() == Ships.DESTROYER.getSize()) {
+            } else if (s.getSize() == Ships.DESTROYER.getSize()) {
                 for (int i = 0; i < Ships.DESTROYER.getSize(); i++) {
-                    board[whereInBoard.getRow() + userEx][whereInBoard.getColumn() + i].setState(State.UNHIT);
+                    board[c.getRow() + userEx][c.getColumn() + i].setState(State.UNHIT);
                 }
             }
         } else {
-            if (ship.getSize() == Ships.CARRIER.getSize()) {
+            if (s.getSize() == Ships.CARRIER.getSize()) {
                 for (int i = userEx; i < Ships.CARRIER.getSize(); i++) {
-                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                    board[c.getRow() + i][c.getColumn()].setState(State.UNHIT);
                 }
-            } else if (ship.getSize() == Ships.BATTLESHIP.getSize()) {
+            } else if (s.getSize() == Ships.BATTLESHIP.getSize()) {
                 for (int i = userEx; i < Ships.BATTLESHIP.getSize(); i++) {
-                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                    board[c.getRow() + i][c.getColumn()].setState(State.UNHIT);
                 }
-            } else if (ship.getSize() == Ships.CRUISER.getSize()) {
+            } else if (s.getSize() == Ships.CRUISER.getSize()) {
                 for (int i = userEx; i < Ships.CRUISER.getSize(); i++) {
-                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                    board[c.getRow() + i][c.getColumn()].setState(State.UNHIT);
                 }
-            } else if (ship.getSize() == Ships.SUBMARINE.getSize()) {
+            } else if (s.getSize() == Ships.SUBMARINE.getSize()) {
                 for (int i = userEx; i < Ships.SUBMARINE.getSize(); i++) {
-                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                    board[c.getRow() + i][c.getColumn()].setState(State.UNHIT);
                 }
-            } else if (ship.getSize() == Ships.DESTROYER.getSize()) {
+            } else if (s.getSize() == Ships.DESTROYER.getSize()) {
                 for (int i = userEx; i < Ships.DESTROYER.getSize(); i++) {
-                    board[whereInBoard.getRow() + i][whereInBoard.getColumn()].setState(State.UNHIT);
+                    board[c.getRow() + i][c.getColumn()].setState(State.UNHIT);
                 }
             }
 
@@ -111,7 +111,7 @@ public class Board {
 
     }
 
-    public boolean checkForOverlapping(Coordinate coordinate) {
+    private boolean checkForOverlapping(Coordinate coordinate) {
         if (board[coordinate.getRow() - 1][coordinate.getColumn()].getPrintValue() == State.EMPTY.getStatus()) {
             return false;
         }
@@ -119,19 +119,19 @@ public class Board {
         return true;
     }
 
-    public boolean checkInsideBoard(Coordinate coordinate, boolean horizontal, Ship ship) {
+    private boolean checkInsideBoard(boolean b, Ship s, Coordinate c) {
 
-        if (horizontal) {
-            if ((coordinate.getColumn() <= 0 || coordinate.getColumn() >= 10)
-                    && (BOARD_SIZE - coordinate.getColumn() < ship.getSize())) {
+        if (b) {
+            if ((c.getColumn() <= 0 || c.getColumn() >= 10)
+                    && (BOARD_SIZE - c.getColumn() < s.getSize())) {
                 System.out.println("Sorry that is not a valid column, the ship will be sticking out.\nTry a new coordinate\n");
                 return false;
             } else {
                 return true;
             }
         } else {
-            if ((coordinate.getRow() <= 0 || coordinate.getRow() >= 10)
-                    && (BOARD_SIZE - coordinate.getRow() < ship.getSize())) {
+            if ((c.getRow() <= 0 || c.getRow() >= 10)
+                    && (BOARD_SIZE - c.getRow() < s.getSize())) {
                 System.out.println("Sorry that is not a valid row, the ship will be sticking out.\nTry a new coordinate\n");
                 return false;
             } else {
