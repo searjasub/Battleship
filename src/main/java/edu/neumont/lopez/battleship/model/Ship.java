@@ -16,14 +16,12 @@ public class Ship {
         this.lives = size;
     }
 
-    public char getState() {
+    public State getState() {
         if (lives == 0) {
-            return 'X';
-        } else if (lives < size) {
-            return State.HIT.getStatus();
-        } else {
-            return State.MISS.getStatus();
+            setSunk(true);
+            return State.DESTROYED;
         }
+        return State.UNHIT;
     }
 
     public String getName() {
@@ -42,7 +40,7 @@ public class Ship {
         isSunk = sunk;
     }
 
-    public void shipHitred() {
+    public void shipHitted() {
         if (lives == 0) {
             isSunk = true;
             System.out.println("You sunk the " + name);

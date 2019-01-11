@@ -6,7 +6,6 @@ import edu.neumont.lopez.battleship.view.UserInteraction;
 
 public class Game {
 
-    private final int BOARD_SIZE = 10;
     private UserInteraction userInteraction = new UserInteraction();
     private Player player1 = new Player();
     private Player player2 = new Player();

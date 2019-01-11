@@ -13,14 +13,6 @@ public class Board {
     private Square[][] board = new Square[BOARD_SIZE][BOARD_SIZE];
 
     public Board() {
-//        this.board = new char[BOARD_SIZE][BOARD_SIZE];
-//        for (int i = 0; i < BOARD_SIZE; i++) {
-//            for (int j = 0; j < BOARD_SIZE; j++) {
-//                board[i][j] = '~';
-//            }
-//        }
-//
-//        //placeShips();
     }
 
     public void init() {
@@ -31,7 +23,6 @@ public class Board {
         }
         initShips();
     }
-
 
     private void initShips() {
         ships = new Ship[]{
@@ -50,29 +41,39 @@ public class Board {
         for (Ship ship : ships) {
             System.out.println("\nLet's place the " + ship.getName() + "\nRemember that the size is " + ship.getSize());
             boolean horizontal = userInteraction.setShipOrientation();
-            if(horizontal){
-                System.out.println("<--- Remember that the ship's direction is toward the right --->");
-            }else {
+            if (horizontal) {
+                System.out.println("\n<--- Remember that the ship's direction is toward the right --->\n");
+            } else {
                 System.out.println("Remember that the ship's direction is toward down");
             }
             boolean isValid = false;
             while (!isValid) {
-                whereInBoard = userInteraction.setStartingPoint();
-                isValid = checkForAvailability(whereInBoard, horizontal, ship);
+                boolean overlapping = true;
+                while (overlapping) {
+                    whereInBoard = userInteraction.setStartingPoint();
+                    isValid = checkInsideBoard(whereInBoard, horizontal, ship);
+                    overlapping = checkForOverlapping(whereInBoard);
+                }
             }
             board[whereInBoard.getRow() - 1][whereInBoard.getColumn()].setState(State.UNHIT);
             printBoard();
         }
     }
 
-    public boolean checkForAvailability(Coordinate coordinate, boolean horizontal, Ship ship) {
+    public boolean checkForOverlapping(Coordinate coordinate) {
+        if (board[coordinate.getRow() - 1][coordinate.getColumn()].getPrintValue() == State.EMPTY.getStatus()) {
+            return false;
+        }
+        System.out.println("\nSorry but there is a ship already there, try a new coordinate.\n");
+        return true;
+    }
 
+    public boolean checkInsideBoard(Coordinate coordinate, boolean horizontal, Ship ship) {
 
-        //TODO IF PASSING G AS A COLUMN IT CRASHES
         if (horizontal) {
             if ((coordinate.getColumn() <= 0 || coordinate.getColumn() >= 10)
-                    && (BOARD_SIZE - coordinate.getNumber() < ship.getSize())) {
-                System.out.println("Sorry that is not a valid column, the ship will be sticking out.\nTry a new coordinate");
+                    && (BOARD_SIZE - coordinate.getColumn() < ship.getSize())) {
+                System.out.println("Sorry that is not a valid column, the ship will be sticking out.\nTry a new coordinate\n");
                 return false;
             } else {
                 return true;
@@ -80,13 +81,12 @@ public class Board {
         } else {
             if ((coordinate.getRow() <= 0 || coordinate.getRow() >= 10)
                     && (BOARD_SIZE - coordinate.getRow() < ship.getSize())) {
-                System.out.println("Sorry that is not a valid row, the ship will be sticking out.\nTry a new coordinate");
+                System.out.println("Sorry that is not a valid row, the ship will be sticking out.\nTry a new coordinate\n");
                 return false;
             } else {
                 return true;
             }
         }
-
     }
 
 
@@ -110,14 +110,4 @@ public class Board {
             System.out.println();
         }
     }
-
-//    @Override
-//    public String toString(){
-//        printBoard();
-//        return "\n";
-//    }
-
-//    public Board initBoard(int board_size) {
-//        Board board =
-//    }
 }

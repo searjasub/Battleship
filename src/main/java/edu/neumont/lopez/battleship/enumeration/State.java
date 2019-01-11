@@ -1,10 +1,11 @@
 package edu.neumont.lopez.battleship.enumeration;
 
 public enum State {
-    UNHIT('S'),  //S = Ship
+    UNHIT('S'),     //S = Ship
     HIT('H'),
     MISS('M'),
-    EMPTY('~');
+    EMPTY('~'),
+    DESTROYED('D');
 
     private char status;
 

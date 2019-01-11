@@ -21,7 +21,6 @@ public class UserInteraction {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-
     }
 
 
@@ -30,9 +29,28 @@ public class UserInteraction {
             int row = ConsoleUI.promptForInt("Choose a row", 1, 10);
             char col = ConsoleUI.promptForChar("Choose a column (letter must be capitilzed)", 'A', 'J');
 
-            Coordinate coordinate = new Coordinate(row, col);
-            int column = coordinate.getNumber();
-
+            int column;
+            if (col == 'A') {
+                column = 0;
+            } else if (col == 'B') {
+                column = 1;
+            } else if (col == 'C') {
+                column = 2;
+            } else if (col == 'D') {
+                column = 3;
+            } else if (col == 'E') {
+                column = 4;
+            } else if (col == 'F') {
+                column = 5;
+            } else if (col == 'G') {
+                column = 6;
+            } else if (col == 'H') {
+                column = 7;
+            } else if (col == 'I') {
+                column = 8;
+            } else {
+                column = 9;
+            }
             return new Coordinate(row, column);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
