@@ -6,7 +6,7 @@ public class Square {
 
     private State state = State.EMPTY;
 
-    public Square() {
+    Square() {
     }
 
     public char getPrintValue() {

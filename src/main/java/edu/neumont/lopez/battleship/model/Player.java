@@ -1,12 +1,10 @@
 package edu.neumont.lopez.battleship.model;
 
-import java.util.ArrayList;
-
 public class Player {
 
     private String name;
     private Board board;
-    private ArrayList<Coordinate> coordinates = new ArrayList<>();
+    private Board attackingBoard;
 
 
     public String getName() {
@@ -25,12 +23,11 @@ public class Player {
         this.board = board;
     }
 
-    public ArrayList<Coordinate> getCoordinates() {
-        return coordinates;
+    public Board getAttackingBoard() {
+        return attackingBoard;
     }
 
-    public void setCoordinates(Coordinate coordinates) {
-        this.coordinates.add(coordinates);
+    public void setAttackingBoard(Board attackingBoard) {
+        this.attackingBoard = attackingBoard;
     }
-
 }

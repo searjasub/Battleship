@@ -28,28 +28,28 @@ public class UserInteraction {
     public Coordinate getCoordinate() {
         try {
             int row = ConsoleUI.promptForInt("Choose a row", 1, 10);
-            char col = ConsoleUI.promptForChar("Choose a column (letter must be capitilzed)", 'A', 'J');
+            String col = ConsoleUI.promptForInput("Choose a column", false);
 
-            int column;
-            if (col == 'A') {
+            int column = 0;
+            if (col.equalsIgnoreCase("a")) {
                 column = 0;
-            } else if (col == 'B') {
+            } else if (col.equalsIgnoreCase("b")) {
                 column = 1;
-            } else if (col == 'C') {
+            } else if (col.equalsIgnoreCase("c")) {
                 column = 2;
-            } else if (col == 'D') {
+            } else if (col.equalsIgnoreCase("d")) {
                 column = 3;
-            } else if (col == 'E') {
+            } else if (col.equalsIgnoreCase("e")) {
                 column = 4;
-            } else if (col == 'F') {
+            } else if (col.equalsIgnoreCase("f")) {
                 column = 5;
-            } else if (col == 'G') {
+            } else if (col.equalsIgnoreCase("g")) {
                 column = 6;
-            } else if (col == 'H') {
+            } else if (col.equalsIgnoreCase("h")) {
                 column = 7;
-            } else if (col == 'I') {
+            } else if (col.equalsIgnoreCase("i")) {
                 column = 8;
-            } else {
+            } else if (col.equalsIgnoreCase("j")) {
                 column = 9;
             }
             return new Coordinate(row, column);

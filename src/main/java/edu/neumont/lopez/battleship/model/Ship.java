@@ -9,7 +9,7 @@ public class Ship {
     private int lives;
     private boolean isSunk;
 
-    public Ship(Ships ship) {
+    Ship(Ships ship) {
         this.name = ship.getName();
         this.size = ship.getSize();
         this.isSunk = false;
