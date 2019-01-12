@@ -52,6 +52,7 @@ public class UserInteraction {
             } else if (col.equalsIgnoreCase("j")) {
                 column = 9;
             }
+            //TODO IF YOU PASS A NUMBER A COLUMN IT WILL STILL PASS
             return new Coordinate(row, column);
         } catch (IOException ex) {
             throw new RuntimeException(ex);

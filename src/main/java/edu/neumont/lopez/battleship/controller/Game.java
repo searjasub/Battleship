@@ -19,18 +19,12 @@ public class Game {
     public void run() {
         System.out.println("Welcome to Battleship!");
         init();
-        //switchTurn();
         while (!gameOver) {
-
             takeTurn();
             switchTurn();
-
-            if (notTurn.getLives() == 0) {
-                gameOver = true;
-            }
         }
-
-        System.out.println("Congratulations " + turn.getName() + "! You won! :D");
+        System.out.println("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nCongratulations " + notTurn.getName() + "! You won! :D" +
+                "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
     private void switchTurn() {
@@ -51,6 +45,10 @@ public class Game {
         do {
             System.out.println("\n\nAfter that moved here is what you got.\n\nYour attacking board");
             turn.getAttackingBoard().printBoard();
+            if (notTurn.getLives() == 0) {
+                gameOver = true;
+                break;
+            }
             System.out.println("\n------------------------------------------\n\nYour board");
             turn.getBoard().printBoard();
         } while (!userInteraction.done());
