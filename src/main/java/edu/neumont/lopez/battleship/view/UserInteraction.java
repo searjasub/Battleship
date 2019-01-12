@@ -27,8 +27,8 @@ public class UserInteraction {
 
     public Coordinate getCoordinate() {
         try {
-            int row = ConsoleUI.promptForInt("Choose a row", 1, 10);
-            String col = ConsoleUI.promptForInput("Choose a column", false);
+            int row = ConsoleUI.promptForInt("\nChoose a row", 1, 10);
+            String col = ConsoleUI.promptForInput("\nChoose a column", false);
 
             int column = 0;
             if (col.equalsIgnoreCase("a")) {
@@ -57,5 +57,13 @@ public class UserInteraction {
             throw new RuntimeException(ex);
         }
 
+    }
+
+    public boolean done() {
+        try {
+            return ConsoleUI.promptForBool("Are you ready to pass the laptop?", "Y", "N");
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

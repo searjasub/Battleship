@@ -6,6 +6,16 @@ public class Player {
     private Board board;
     private Board attackingBoard;
 
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    private int lives = 17;
+
 
     public String getName() {
         return name;

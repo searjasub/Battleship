@@ -2,10 +2,7 @@ package edu.neumont.lopez.battleship.controller;
 
 import edu.neumont.lopez.battleship.enumeration.Ships;
 import edu.neumont.lopez.battleship.enumeration.State;
-import edu.neumont.lopez.battleship.model.Board;
-import edu.neumont.lopez.battleship.model.Coordinate;
-import edu.neumont.lopez.battleship.model.Player;
-import edu.neumont.lopez.battleship.model.Ship;
+import edu.neumont.lopez.battleship.model.*;
 import edu.neumont.lopez.battleship.view.UserInteraction;
 
 public class Game {
@@ -15,17 +12,25 @@ public class Game {
     private Player player2 = new Player();
     private Player turn = player1;
     private Player notTurn = player2;
+    private int userEx = -1;
     private boolean gameOver = false;
     private boolean horizontal;
 
     public void run() {
         System.out.println("Welcome to Battleship!");
         init();
-        switchTurn();
+        //switchTurn();
         while (!gameOver) {
+
             takeTurn();
             switchTurn();
+
+            if (notTurn.getLives() == 0) {
+                gameOver = true;
+            }
         }
+
+        System.out.println("Congratulations " + turn.getName() + "! You won! :D");
     }
 
     private void switchTurn() {
@@ -35,24 +40,32 @@ public class Game {
 
     private void takeTurn() {
         addExtraSpace();
-        System.out.println("Ok " + turn.getName() + "Let's attack your opponent board\nHere is an empty board where we will be tracking the places you said.");
+        System.out.println("Ok " + turn.getName() + " , let's attack" + notTurn.getName() + "'s board.\nHere is an empty board where we will be tracking your opponent's board");
         turn.getAttackingBoard().printBoard();
         Coordinate coordinatesOfAttack;
         coordinatesOfAttack = userInteraction.getCoordinate();
-
-        
-
+        updateBothBoards(coordinatesOfAttack, notTurn.getBoard().getSquares(), turn.getAttackingBoard().getSquares());
+        do {
+            System.out.println("\n\nAfter that moved here is what you got.\n\nYour attacking board");
+            turn.getAttackingBoard().printBoard();
+            System.out.println("\n------------------------------------------\n\nYour board");
+            turn.getBoard().printBoard();
+        } while (!userInteraction.done());
     }
 
-
-
-
-
-
-
-
-
-
+    private void updateBothBoards(Coordinate coordinatesOfAttack, Square[][] opponentSquares, Square[][] turnAttackingBoard) {
+        if (opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].getPrintValue() == State.UNHIT.getStatus()) {
+            opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.HIT);
+            turnAttackingBoard[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.HIT);
+            notTurn.setLives(-1);
+            System.out.println("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nGood job " + turn.getName() + "! You hit " + notTurn.getName() + "'s ship\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        } else {
+            opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.MISS);
+            turnAttackingBoard[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.MISS);
+            System.out.println("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nYou missed, better luck next time!\n" +
+                    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        }
+    }
 
 
     private void placeShips() {
@@ -63,7 +76,7 @@ public class Game {
             System.out.println("\nLet's place the " + ship.getName() + "\nRemember that the size is " + ship.getSize());
             horizontal = userInteraction.setShipOrientation();
             if (horizontal) {
-                System.out.println("\n<--- Remember that the ship's direction is toward the right --->\n");
+                System.out.println("\n<--- Remember that the ship's direction is toward the right --->");
             } else {
                 System.out.println("Remember that the ship's direction is toward down");
             }
@@ -88,7 +101,6 @@ public class Game {
     //TODO WHEN PASSING 10 J AS A COORDINATE IT WILL PRINT TWICE THAT IS NOT A VALID COORDINATION (horizontal = N)
     private boolean updateBoardDirection(Ship s, Coordinate c) {
         if (horizontal) {
-            int userEx = -1;
             if (s.getSize() == Ships.CARRIER.getSize()) {
                 for (int i = Ships.CARRIER.getSize() - 1; i >= 0; i--) {
                     Coordinate newToCheck = new Coordinate(c.getRow(), c.getColumn() + i);
