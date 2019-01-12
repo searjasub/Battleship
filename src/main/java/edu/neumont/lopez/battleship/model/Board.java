@@ -26,6 +26,7 @@ public class Board {
         return ships;
     }
 
+
     public int getBOARD_SIZE() {
         return BOARD_SIZE;
     }
@@ -58,20 +59,4 @@ public class Board {
             System.out.println();
         }
     }
-
-    public void printSampleBoard() {
-        System.out.println("\t");
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            System.out.print("\t" + BOARD_LETTERS[i]);
-        }
-        System.out.println();
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            System.out.print((i + 1) + "\t");
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                System.out.print('~' + "\t");
-            }
-            System.out.println();
-        }
-    }
-
 }

@@ -40,11 +40,14 @@ public class Game {
 
     private void takeTurn() {
         addExtraSpace();
-        System.out.println("Ok " + turn.getName() + " , let's attack" + notTurn.getName() + "'s board.\nHere is an empty board where we will be tracking your opponent's board");
-        turn.getAttackingBoard().printBoard();
-        Coordinate coordinatesOfAttack;
-        coordinatesOfAttack = userInteraction.getCoordinate();
-        updateBothBoards(coordinatesOfAttack, notTurn.getBoard().getSquares(), turn.getAttackingBoard().getSquares());
+        System.out.println("Ok " + turn.getName() + " , let's attack " + notTurn.getName() + "'s board.\nHere is an empty board where we will be tracking your opponent's board");
+        boolean repeatedAttacked;
+        do {
+            turn.getAttackingBoard().printBoard();
+            Coordinate coordinatesOfAttack;
+            coordinatesOfAttack = userInteraction.getCoordinate();
+            repeatedAttacked = updateBothBoards(coordinatesOfAttack, notTurn.getBoard().getSquares(), turn.getAttackingBoard().getSquares());
+        } while (!repeatedAttacked);
         do {
             System.out.println("\n\nAfter that moved here is what you got.\n\nYour attacking board");
             turn.getAttackingBoard().printBoard();
@@ -53,20 +56,24 @@ public class Game {
         } while (!userInteraction.done());
     }
 
-    private void updateBothBoards(Coordinate coordinatesOfAttack, Square[][] opponentSquares, Square[][] turnAttackingBoard) {
-        if (opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].getPrintValue() == State.UNHIT.getStatus()) {
+    private boolean updateBothBoards(Coordinate coordinatesOfAttack, Square[][] opponentSquares, Square[][] turnAttackingBoard) {
+        if (opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].getPrintValue() == State.HIT.getStatus()) {
+            System.out.println("\n\nYou already attacked that one before, try another one");
+            return false;
+        } else if (opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].getPrintValue() == State.UNHIT.getStatus()) {
             opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.HIT);
             turnAttackingBoard[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.HIT);
             notTurn.setLives(-1);
             System.out.println("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nGood job " + turn.getName() + "! You hit " + notTurn.getName() + "'s ship\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            return true;
         } else {
             opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.MISS);
             turnAttackingBoard[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.MISS);
             System.out.println("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nYou missed, better luck next time!\n" +
                     "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            return true;
         }
     }
-
 
     private void placeShips() {
         Coordinate whereInBoard;
@@ -86,6 +93,7 @@ public class Game {
                 while (overlapping) {
                     boolean direction = false;
                     while (!direction) {
+                        //TODO PASSING ANYTHING BIGGER AS COL WILL PLACE THE SHIP IN COLUMN 0
                         whereInBoard = userInteraction.getCoordinate();
                         isValid = checkInsideBoard(ship, whereInBoard);
                         overlapping = checkForOverlapping(whereInBoard);

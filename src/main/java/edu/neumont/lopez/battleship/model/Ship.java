@@ -9,19 +9,12 @@ public class Ship {
     private int lives;
     private boolean isSunk;
 
+
     Ship(Ships ship) {
         this.name = ship.getName();
         this.size = ship.getSize();
         this.isSunk = false;
         this.lives = size;
-    }
-
-    public State getState() {
-        if (lives == 0) {
-            setSunk(true);
-            return State.DESTROYED;
-        }
-        return State.UNHIT;
     }
 
     public String getName() {

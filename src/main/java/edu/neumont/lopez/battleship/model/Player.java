@@ -5,6 +5,7 @@ public class Player {
     private String name;
     private Board board;
     private Board attackingBoard;
+    private int lives = 17;
 
     public int getLives() {
         return lives;
@@ -14,7 +15,6 @@ public class Player {
         this.lives = lives;
     }
 
-    private int lives = 17;
 
 
     public String getName() {
