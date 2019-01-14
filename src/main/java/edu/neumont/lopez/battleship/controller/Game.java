@@ -87,16 +87,6 @@ public class Game {
             }
             boolean isValid = false;
             while (!isValid) {
-//                boolean overlapping = true;
-//                while (overlapping) {
-//                    boolean direction = false;
-//                    while (!direction) {
-//                        whereInBoard = userInteraction.getCoordinate();
-//                        isValid = checkInsideBoard(ship, whereInBoard);
-//                        overlapping = checkForOverlapping(whereInBoard);
-//                        direction = updateBoardDirection(ship, whereInBoard);
-//                    }
-//                }
                 whereInBoard = userInteraction.getCoordinate();
                 isValid = checkInsideBoard(ship, whereInBoard);
                 if (checkForOverlapping(whereInBoard)) {
@@ -104,14 +94,12 @@ public class Game {
                 } else {
                     updateBoardDirection(ship, whereInBoard);
                 }
-
             }
             turn.getBoard().printBoard();
         }
         switchTurn();
     }
 
-    //TODO WHEN PASSING 10 J AS A COORDINATE IT WILL PRINT TWICE THAT IS NOT A VALID COORDINATION (horizontal = N)
     private boolean updateBoardDirection(Ship s, Coordinate c) {
         if (horizontal) {
             if (s.getSize() == Ships.CARRIER.getSize()) {
