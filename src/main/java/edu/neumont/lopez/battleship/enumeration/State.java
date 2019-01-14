@@ -4,8 +4,7 @@ public enum State {
     UNHIT('S'),     //S = Ship
     HIT('H'),
     MISS('M'),
-    EMPTY('~'),
-    DESTROYED('D');
+    EMPTY('~');
 
     private char status;
 

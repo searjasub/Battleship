@@ -54,19 +54,19 @@ public class Game {
         } while (!userInteraction.done());
     }
 
-    private boolean updateBothBoards(Coordinate coordinatesOfAttack, Square[][] opponentSquares, Square[][] turnAttackingBoard) {
-        if (opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].getPrintValue() == State.HIT.getStatus()) {
+    private boolean updateBothBoards(Coordinate c, Square[][] notTurnBoard, Square[][] turnAttackingBoard) {
+        if (notTurnBoard[c.getRow() + userEx][c.getColumn()].getPrintValue() == State.HIT.getStatus()) {
             System.out.println("\n\nYou already attacked that one before, try another one");
             return false;
-        } else if (opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].getPrintValue() == State.UNHIT.getStatus()) {
-            opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.HIT);
-            turnAttackingBoard[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.HIT);
+        } else if (notTurnBoard[c.getRow() + userEx][c.getColumn()].getPrintValue() == State.UNHIT.getStatus()) {
+            notTurnBoard[c.getRow() + userEx][c.getColumn()].setState(State.HIT);
+            turnAttackingBoard[c.getRow() + userEx][c.getColumn()].setState(State.HIT);
             notTurn.setLives(-1);
             System.out.println("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nGood job " + turn.getName() + "! You hit " + notTurn.getName() + "'s ship\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             return true;
         } else {
-            opponentSquares[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.MISS);
-            turnAttackingBoard[coordinatesOfAttack.getRow() + userEx][coordinatesOfAttack.getColumn()].setState(State.MISS);
+            notTurnBoard[c.getRow() + userEx][c.getColumn()].setState(State.MISS);
+            turnAttackingBoard[c.getRow() + userEx][c.getColumn()].setState(State.MISS);
             System.out.println("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nYou missed, better luck next time!\n" +
                     "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             return true;
