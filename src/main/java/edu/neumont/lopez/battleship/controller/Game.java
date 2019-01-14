@@ -87,17 +87,24 @@ public class Game {
             }
             boolean isValid = false;
             while (!isValid) {
-                boolean overlapping = true;
-                while (overlapping) {
-                    boolean direction = false;
-                    while (!direction) {
-                        //TODO PASSING ANYTHING BIGGER AS COL WILL PLACE THE SHIP IN COLUMN 0
-                        whereInBoard = userInteraction.getCoordinate();
-                        isValid = checkInsideBoard(ship, whereInBoard);
-                        overlapping = checkForOverlapping(whereInBoard);
-                        direction = updateBoardDirection(ship, whereInBoard);
-                    }
+//                boolean overlapping = true;
+//                while (overlapping) {
+//                    boolean direction = false;
+//                    while (!direction) {
+//                        whereInBoard = userInteraction.getCoordinate();
+//                        isValid = checkInsideBoard(ship, whereInBoard);
+//                        overlapping = checkForOverlapping(whereInBoard);
+//                        direction = updateBoardDirection(ship, whereInBoard);
+//                    }
+//                }
+                whereInBoard = userInteraction.getCoordinate();
+                isValid = checkInsideBoard(ship, whereInBoard);
+                if (checkForOverlapping(whereInBoard)) {
+                    isValid = false;
+                } else {
+                    updateBoardDirection(ship, whereInBoard);
                 }
+
             }
             turn.getBoard().printBoard();
         }
@@ -196,7 +203,6 @@ public class Game {
         return true;
     }
 
-    //TODO CREATE A FOR LOOP TO START CHECKING EACH SPACE, STARTING FROM THE BACK
     private boolean checkForOverlapping(Coordinate coordinate) {
         if (turn.getBoard().getSquares()[coordinate.getRow() - 1][coordinate.getColumn()].getPrintValue() == State.EMPTY.getStatus()) {
             return false;

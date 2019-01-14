@@ -27,32 +27,48 @@ public class UserInteraction {
 
     public Coordinate getCoordinate() {
         try {
-            int row = ConsoleUI.promptForInt("\nChoose a row", 1, 10);
-            String col = ConsoleUI.promptForInput("\nChoose a column", false);
-
+            boolean isValid = false;
+            int row = 0;
+            String col;
             int column = 0;
-            if (col.equalsIgnoreCase("a")) {
-                column = 0;
-            } else if (col.equalsIgnoreCase("b")) {
-                column = 1;
-            } else if (col.equalsIgnoreCase("c")) {
-                column = 2;
-            } else if (col.equalsIgnoreCase("d")) {
-                column = 3;
-            } else if (col.equalsIgnoreCase("e")) {
-                column = 4;
-            } else if (col.equalsIgnoreCase("f")) {
-                column = 5;
-            } else if (col.equalsIgnoreCase("g")) {
-                column = 6;
-            } else if (col.equalsIgnoreCase("h")) {
-                column = 7;
-            } else if (col.equalsIgnoreCase("i")) {
-                column = 8;
-            } else if (col.equalsIgnoreCase("j")) {
-                column = 9;
+            while (!isValid) {
+
+                row = ConsoleUI.promptForInt("\nChoose a row", 1, 10);
+                col = ConsoleUI.promptForInput("\nChoose a column", false);
+
+                if (col.equalsIgnoreCase("a")) {
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("b")) {
+                    column = 1;
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("c")) {
+                    column = 2;
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("d")) {
+                    column = 3;
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("e")) {
+                    column = 4;
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("f")) {
+                    column = 5;
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("g")) {
+                    column = 6;
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("h")) {
+                    column = 7;
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("i")) {
+                    column = 8;
+                    isValid = true;
+                } else if (col.equalsIgnoreCase("j")) {
+                    column = 9;
+                    isValid = true;
+                } else {
+                    System.out.println("Sorry that's not a valid column, please try again");
+                }
             }
-            //TODO IF YOU PASS A NUMBER A COLUMN IT WILL STILL PASS
             return new Coordinate(row, column);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
